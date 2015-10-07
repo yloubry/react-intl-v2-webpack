@@ -15,6 +15,16 @@ const messages = defineMessages({
     }
 });
 
+var Root = React.createClass({
+  render: function() {
+    return (
+      <IntlProvider locale={window.App.locale} messages={window.App.messages}>
+        <App />
+      </IntlProvider>
+    );
+  }
+});
+
 
 class App extends Component {
     constructor(props) {
@@ -38,9 +48,6 @@ class App extends Component {
     }
 }
 
-ReactDOM.render(
-    <IntlProvider>
-        <App />
-    </IntlProvider>,
-    document.getElementById('container')
-);
+//console.log(window.App.messages);
+
+ReactDOM.render(<Root /> ,document.getElementById('container'));
