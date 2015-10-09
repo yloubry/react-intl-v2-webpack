@@ -1,8 +1,10 @@
-# react-intl-v2-webpack
-example of react-intl v2 working with webpack and babel loader.
+# react-intl-v2
+react-intl-v2 demonstration of Numbers, Date Time, Plurals &amp; Select
 
-npm install
+npm install  (install all dependencies)
 
-npm run build
+npm install babel-node -g  (needed to babelize some scripts)
 
-npm run start
+npm run build (run the babel plugin and extract content into a lang repository, please have babel-node installed globally prior to run this)
+
+npm run start (start the server)

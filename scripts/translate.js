@@ -31,6 +31,9 @@ let defaultMessages = globSync(MESSAGES_PATTERN)
 // offline process to get the app's messages translated by machine or
 // processional translators.
 let uppercaseTranslator = new Translator((text) => text.toUpperCase());
+let frenchTranslator = new Translator((text) => text.replace(/(.*)/,function(match,$1){
+        return "_FR_" + $1;
+    }));
 let uppercaseMessages = Object.keys(defaultMessages)
     .map((id) => [id, defaultMessages[id]])
     .reduce((collection, [id, defaultMessage]) => {
@@ -38,6 +41,14 @@ let uppercaseMessages = Object.keys(defaultMessages)
         return collection;
     }, {});
 
+let frenchMessages = Object.keys(defaultMessages)
+    .map((id) => [id, defaultMessages[id]])
+    .reduce((collection, [id, defaultMessage]) => {
+        collection[id] = frenchTranslator.translate(defaultMessage);
+        return collection;
+    }, {});
+
 mkdirpSync(LANG_DIR);
 fs.writeFileSync(LANG_DIR + 'en-US.json', JSON.stringify(defaultMessages, null, 2));
 fs.writeFileSync(LANG_DIR + 'en-UPPER.json', JSON.stringify(uppercaseMessages, null, 2));
+fs.writeFileSync(LANG_DIR + 'fr-FR.json', JSON.stringify(frenchMessages, null, 2));

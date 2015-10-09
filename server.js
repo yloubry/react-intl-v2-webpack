@@ -46,7 +46,7 @@ app.get('/', (req, res) => {
     <script>
         window.App = ${serialize({locale, messages})};
     </script>
-    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Intl.~locale.en"></script>
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Intl.~locale.${locale}"></script>
     <script src="react/dist/react.js"></script>
     <script src="bundle.js"></script>
 </body>

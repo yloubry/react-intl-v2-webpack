@@ -1,4 +1,4 @@
-import {IntlProvider, FormattedMessage, defineMessages} from 'react-intl';
+import {IntlProvider, FormattedMessage, FormattedDate, FormattedTime, FormattedRelative, FormattedNumber, defineMessages} from 'react-intl';
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 
@@ -26,7 +26,7 @@ var Root = React.createClass({
 });
 
 
-class App extends Component {
+class PluralSelect extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -48,6 +48,70 @@ class App extends Component {
     }
 }
 
-//console.log(window.App.messages);
+class Numbers extends Component {
+    render() {
+        return (
+            <div>
+            <h1>Example of a formatted numbers</h1>
+            <ul>
+                <li><FormattedNumber value={123456789} /></li>
+                <li><FormattedNumber value={0.9} style="percent" /></li>
+                <li>
+                    <FormattedNumber
+                        value={99.95}
+                        style="currency"
+                        currency="USD" />
+                </li>
+            </ul>
+            </div>
+        );
+    }
+}
+
+class DateTime extends Component {
+    render() {
+        var postDate    = Date.now() - (1000 * 60 * 60 * 48);
+        var commentDate = Date.now() - (1000 * 60 * 60 * 0.5);
+        var meetingDate = Date.now() + (1000 * 60 * 60 * 1);
+        //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat
+        return (
+            <div>
+            <h1>Example of a date & time formatting</h1>
+            <ul>
+                <li>Today:&nbsp;
+                    <FormattedDate
+                        value={new Date()}
+                        day="numeric"
+                        month="short"
+                        year="numeric" />
+                </li>
+                <li>
+                    <FormattedTime
+                    value={new Date()} 
+                    minute="numeric"
+                    hour="numeric"
+                    second="numeric" /></li>
+                <br/>
+                <h2>Support for time relative</h2>
+                <li><FormattedRelative value={postDate} /></li>
+                <li><FormattedRelative value={commentDate} /></li>
+                <li><FormattedRelative value={meetingDate} /></li>
+            </ul>
+            </div>
+        );
+    }
+}
+
+class App extends Component {
+    render() {
+        return (
+            <div>
+            <PluralSelect />
+            <Numbers />
+            <DateTime locale="fr-FR" />
+            </div>
+        );
+    }
+}
 
 ReactDOM.render(<Root /> ,document.getElementById('container'));
