@@ -8,9 +8,13 @@
     "react-intl": "^2.0.0-pr-2"
   },
   "devDependencies": {
+    "babel": "^5.8.23",
     "babel-loader": "^5.3.2",
     "babel-plugin-react-intl": "^1.0.0-beta-4",
     "express": "^4.13.3",
+    "glob": "^5.0.15",
+    "intl-messageformat-parser": "^1.1.0",
+    "mkdirp": "^0.5.1",
     "serialize-javascript": "^1.1.2",
     "webpack": "^1.12.2"
   },
