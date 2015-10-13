@@ -1,6 +1,10 @@
 import {IntlProvider, FormattedMessage, FormattedDate, FormattedTime, FormattedRelative, FormattedNumber, defineMessages} from 'react-intl';
+import * as ReactIntl from 'react-intl';
+
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
+
+ReactIntl.addLocaleData(ReactIntlLocaleData.fr);
 
 const messages = defineMessages({
     plurals: {
@@ -14,6 +18,8 @@ const messages = defineMessages({
         defaultMessage: "{name} is {gender,select, male{a male} other{a female}}. {gender,select, male{He} other{She}} likes using the react-intl library"
     }
 });
+
+
 
 var Root = React.createClass({
   render: function() {
@@ -60,7 +66,7 @@ class Numbers extends Component {
                     <FormattedNumber
                         value={99.95}
                         style="currency"
-                        currency="USD" />
+                        currency="EUR" />
                 </li>
             </ul>
             </div>
@@ -70,9 +76,9 @@ class Numbers extends Component {
 
 class DateTime extends Component {
     render() {
-        var postDate    = Date.now() - (1000 * 60 * 60 * 48);
-        var commentDate = Date.now() - (1000 * 60 * 60 * 0.5);
-        var meetingDate = Date.now() + (1000 * 60 * 60 * 1);
+        var postDate    = Date.now() - (1000 * 60 * 60 * 48); //2 days ago
+        var commentDate = Date.now() - (1000 * 60 * 60 * 0.5); //30 min ago
+        var meetingDate = Date.now() + (1000 * 60 * 60 * 1); // in 1 hour
         //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat
         return (
             <div>
@@ -106,9 +112,9 @@ class App extends Component {
     render() {
         return (
             <div>
-            <PluralSelect />
-            <Numbers />
-            <DateTime locale="fr-FR" />
+                <PluralSelect />
+                <Numbers />
+                <DateTime />
             </div>
         );
     }
